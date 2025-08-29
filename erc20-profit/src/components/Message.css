@@ -1,0 +1,253 @@
+/* Message Component Styles */
+
+.message-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  z-index: 1000;
+  animation: slideInRight 0.3s ease-out;
+  overflow: hidden;
+}
+
+.message-container.closing {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.message-icon {
+  font-size: 1.2rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.message-text {
+  flex: 1;
+  color: #1a1a2e;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.message-close {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.message-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+/* Message Types */
+.message-container.success {
+  border-color: rgba(76, 175, 80, 0.3);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.message-container.success .message-content {
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.message-container.error {
+  border-color: rgba(244, 67, 54, 0.3);
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.message-container.error .message-content {
+  background: rgba(244, 67, 54, 0.05);
+}
+
+.message-container.warning {
+  border-color: rgba(255, 152, 0, 0.3);
+  background: rgba(255, 152, 0, 0.1);
+}
+
+.message-container.warning .message-content {
+  background: rgba(255, 152, 0, 0.05);
+}
+
+.message-container.info {
+  border-color: rgba(33, 150, 243, 0.3);
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.message-container.info .message-content {
+  background: rgba(33, 150, 243, 0.05);
+}
+
+/* Progress Bar */
+.message-progress {
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ffed4e);
+  animation: progressShrink 5s linear forwards;
+}
+
+.message-container.success .progress-bar {
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+}
+
+.message-container.error .progress-bar {
+  background: linear-gradient(90deg, #f44336, #ef5350);
+}
+
+.message-container.warning .progress-bar {
+  background: linear-gradient(90deg, #ff9800, #ffb74d);
+}
+
+.message-container.info .progress-bar {
+  background: linear-gradient(90deg, #2196f3, #42a5f5);
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes progressShrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .message-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .message-content {
+    padding: 14px 16px;
+  }
+
+  .message-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-container {
+    top: 5px;
+    right: 5px;
+    left: 5px;
+  }
+
+  .message-content {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .message-icon {
+    font-size: 1.1rem;
+    min-width: 20px;
+  }
+
+  .message-text {
+    font-size: 0.85rem;
+  }
+
+  .message-close {
+    font-size: 1.3rem;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Multiple messages stacking */
+.message-container + .message-container {
+  margin-top: 10px;
+}
+
+/* Hover effects */
+.message-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.message-container:hover .progress-bar {
+  animation-play-state: paused;
+}
+
+/* Focus states for accessibility */
+.message-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .message-container {
+    background: rgba(26, 26, 46, 0.95);
+    color: #ffffff;
+  }
+
+  .message-text {
+    color: #ffffff;
+  }
+
+  .message-close {
+    color: #b8c5d6;
+  }
+
+  .message-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  .message-progress {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
