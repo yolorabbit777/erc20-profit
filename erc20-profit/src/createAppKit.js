@@ -12,8 +12,8 @@ const networks = [sepolia];
 const metadata = {
   name: "9StarGold",
   description: "9StarGold",
-  url: "https://9stargold.com", // origin must match your domain & subdomain
-  icons: ["https://avatars.9stargold.com/"],
+  url: "https://erc20-profit.vercel.app/", // origin must match your domain & subdomain
+  icons: ["https://erc20-profit.vercel.app/"],
 };
 
 // 4. Create a AppKit instance
